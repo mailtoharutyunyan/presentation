@@ -1,0 +1,91 @@
+show databases;
+
+create database userservice;
+use userservice;
+
+create table permission
+(
+    id              int primary key auto_increment,
+    permission_name varchar(20)
+);
+
+create table role
+(
+    id        int primary key auto_increment,
+    role_name varchar(20)
+);
+
+create table user
+(
+    id       int primary key auto_increment,
+    name     varchar(20),
+    email    varchar(255) unique key,
+    password varchar(1000)
+);
+
+create table assign_permission_to_role
+(
+    id            int primary key auto_increment,
+    permission_id int,
+    foreign key (permission_id) references permission (id),
+    role_id       int,
+    foreign key (role_id) references role (id)
+);
+
+create table assign_user_to_role
+(
+    id      int primary key auto_increment,
+    user_id int,
+    foreign key (user_id) references user (id),
+    role_id int,
+    foreign key (role_id) references role (id)
+);
+
+insert into permission(id, permission_name)
+values (1, 'create_note'),
+       (2, 'edit_note'),
+       (3, 'delete_note'),
+       (4, 'view_all_note'),
+       (5, 'view_note');
+
+insert into role(id, role_name)
+VALUES (1, 'Administrator'),
+       (2, 'Auditor');
+
+insert into user(id, name, email, password)
+values (1, 'Arayik', 'mailtoharutyunyan@gmail.com', '$2a$10$gRNZcY3XsWuaZ6Wms2uD6ei0Y9cTPM7h1IUrBiJYtrc1AJP6IoBsO');
+
+insert into user(id, name, email, password)
+values (2, 'Narek', 'narek1994t@gmail.com', '$2a$10$gRNZcY3XsWuaZ6Wms2uD6ei0Y9cTPM7h1IUrBiJYtrc1AJP6IoBsO');
+
+insert into assign_permission_to_role(permission_id, role_id) VALUES (1, 1);
+insert into assign_permission_to_role(permission_id, role_id) VALUES (2, 1);
+insert into assign_permission_to_role(permission_id, role_id) VALUES (3, 1);
+insert into assign_permission_to_role(permission_id, role_id) VALUES (4, 1);
+insert into assign_permission_to_role(permission_id, role_id) VALUES (5, 1);
+
+insert into assign_permission_to_role(permission_id,role_id) values (4,2);
+insert into assign_permission_to_role(permission_id,role_id) values (5,2);
+
+insert into assign_user_to_role(user_id, role_id) VALUES (1,1);
+insert into assign_user_to_role(user_id, role_id) VALUES (2,2);
+
+# select * from user where email = 'mailtoharutyunyan@gmail.com'
+
+# Check User Permissions
+select distinct permission_name from permission p
+inner join assign_permission_to_role aptr on p.id = aptr.permission_id
+inner join role r on aptr.role_id = r.id
+inner join assign_user_to_role autr on r.id = autr.role_id
+inner join user u on autr.user_id = u.id
+where email = 'mailtoharutyunyan@gmail.com';
+
+select distinct permission_name from permission p
+inner join assign_permission_to_role aptr on p.id = aptr.permission_id
+inner join role r on aptr.role_id = r.id
+inner join assign_user_to_role autr on r.id = autr.role_id
+inner join user u on autr.user_id = u.id
+where email = 'narek1994t@gmail.com'
+
+
+

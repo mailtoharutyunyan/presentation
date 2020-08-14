@@ -1,0 +1,8 @@
+POST http://localhost:8080/oauth/token
+Authorization: Basic d2ViX2FwcDpwYXNz
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password&username=mailtoharutyunyan%40gmail.com&password=password
+
+###
+

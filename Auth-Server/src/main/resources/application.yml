@@ -1,0 +1,52 @@
+
+spring:
+  application:
+    name: authserver
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://localhost:3306/userservice?createDatabaseIfNotExist=TRUE"
+    username: "root"
+    password: "root"
+security:
+  oauth2:
+    client:
+      client-id: web
+      client-secret: secret
+#      access-token-validity-seconds: 100
+#      refresh-token-validity-seconds: 300
+      privateKey: -----BEGIN RSA PRIVATE KEY-----
+        MIIEowIBAAKCAQEApB02paVZow0OqX8z+xpigZwjgv+OMDpFaHwtXWhed2dOh+z/
+        XlNOqNV5cfPl3SrlvODBgAZ8Lq0ZJWUd2SLLUvLxad/AFScQ6ws8pUpyjC9jE5aU
+        IINzx/KvoD8KLyK14hUnk7YMV3iYKpPvHvMKV4Qhlexo+EsXWHRhJ4qYZb+vPp+C
+        g40amFpyE5TVfUsWzPb2FsOZ500fiLmg4c3j4kSz0LncXu3mCOjfsKM6sdMRejzm
+        dDKNzs6XbC0J20SXa7vVQAGuabtl2193Kfvy5nlyx3psL6ldnKQh+1pmApXWhNyn
+        cid25BrwlytdH14H1JaxXqYyHcvUPzLVikxJgQIDAQABAoIBADKxo3O/g9TN772D
+        wXbLS6plpMKOVkmndlE0Kn80Aho4GxX5q1hju2SDrKP6hwKugZC6jIsTdcClT6Mx
+        fOrZyJyy1sexig/+pUc1jWIxgPi0mpIubUstz9HvsTh6wJaWzkAr8LG8BkvuwHJG
+        iBKzWHp4IjfBcxtfdrKoIGqqcTDcam+b/M7JRzzbH1zWocRAcHSpZJFSPHRbIKFr
+        pC11dnxeMYatEHytc+r5XJgFd2b8PKNpbFnqO1M8qFwf64/duq1dVn83mHFhWNVH
+        oUvbRg6dQrgZsPZv9xMwY3F94j4Oa8lv4exfJ2yhX4kRL6wmdIRMAp4JYKeE7/Pv
+        ABqsnJECgYEA1lu4S3/guZJKKTI5NwiHERBK9F1j8pNAM8uiGNyOK2QJgS0nRkG3
+        h1uY9x57XztuVF8DDxMUh34Z2W/j4K1E0l8w4ZG6glIkJu/pUwrm4btiimrFEM2H
+        qILfIr00gyu/4Ld9XnBDBPHMOnrJMD9ZyPH+Pkt6uhYKDGrX/jbDudMCgYEAw/7L
+        VqTnvNrv6KwRokOSPWoyy2oTJlwZMzSQtS1XJCkxXFvdJ/kfS+fFEFy2z9KcVYRc
+        mEKiO496x3w01JuYjGhZvInU9dreY05lUKQOuFIl6fatc90jNK5wfYZDLUxH5m1E
+        1qLiUr1WS/UFWKm22GuER9no+AtUBbthULQ9JtsCgYBRhXhFXlC8wmHp4OvZfii/
+        2I5o+Mt2CYI1MJBpHBgFcHoc4ms5UOzXUYKPGMyanyOKesfTB9Ka5N43z1G+tKaj
+        ywfwAVgJD+wn0r3NkyvTVUxYj9p6VW/uKjdqIsLBz/WdJKtNKyyRyNN+uguhibY/
+        saibUGFQO+l+Z3PVfkZZeQKBgCV114tx7VDtT5la+evXmmXenGLAnXRhefeNfnMC
+        fXtN3D9Y14ZCWTb6z3F3JwHFsVeu+runULatj7v9A2P3cUq0zyH3/hoXgRXd8ANf
+        t+iG2vRCz5grlgUFqj5zoPdRcxSZoeScMUG7KnlOFX2Cwo3OzvOktKBkGeUWkV0J
+        df6tAoGBAMa7xhwaXbK58lk9CEWoH9o1KyVwx8Xm44Gu9s/GZDZdoKEc+m/rvoZ/
+        fayayIA+EI+cYHJoq1LDa9UFkM0mEp4tLZFZMVf4H0wus7spujmP9WiazfRRGDap
+        SlRRROBXoT01BYpnMS3uv9+tK2o+/vZHEsorRnn30qCow8QcJKpZ
+        -----END RSA PRIVATE KEY-----
+      publicKey: -----BEGIN PUBLIC KEY-----
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApB02paVZow0OqX8z+xpi
+        gZwjgv+OMDpFaHwtXWhed2dOh+z/XlNOqNV5cfPl3SrlvODBgAZ8Lq0ZJWUd2SLL
+        UvLxad/AFScQ6ws8pUpyjC9jE5aUIINzx/KvoD8KLyK14hUnk7YMV3iYKpPvHvMK
+        V4Qhlexo+EsXWHRhJ4qYZb+vPp+Cg40amFpyE5TVfUsWzPb2FsOZ500fiLmg4c3j
+        4kSz0LncXu3mCOjfsKM6sdMRejzmdDKNzs6XbC0J20SXa7vVQAGuabtl2193Kfvy
+        5nlyx3psL6ldnKQh+1pmApXWhNyncid25BrwlytdH14H1JaxXqYyHcvUPzLVikxJ
+        gQIDAQAB
+        -----END PUBLIC KEY-----

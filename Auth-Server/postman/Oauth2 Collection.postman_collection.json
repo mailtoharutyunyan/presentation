@@ -1,0 +1,199 @@
+{
+	"info": {
+		"_postman_id": "80a153ac-3603-453f-a8a0-39bd4b5ee8ef",
+		"name": "Oauth2 Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Init Variables",
+			"item": [
+				{
+					"name": "Local",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3f5755d9-ddcc-48cb-b5fb-b7891704c6c4",
+								"exec": [
+									"pm.environment.set(\"localhost\", \"http://localhost:8080\");\r",
+									"pm.environment.set(\"ACCESS_TOKEN\", \"\");\r",
+									"pm.environment.set(\"REFRESH_TOKEN\", \"\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://postman-echo.com/get",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dev",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Prod",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Auhorization",
+			"item": [
+				{
+					"name": "Get Access & Refresh Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b126a68e-3b28-4467-8a75-59eb2c658e56",
+								"exec": [
+									"//TEST RESPONSE\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//SET ENV VAR\r",
+									"pm.environment.set(\"ACCESS_TOKEN\", pm.response.json().access_token);\r",
+									"tests[\"ENV VAR : [ACCESS_TOKEN] = \"+postman.getEnvironmentVariable(\"ACCESS_TOKEN\")] = true;\r",
+									"pm.environment.set(\"REFRESH_TOKEN\", pm.response.json().refresh_token);\r",
+									"tests[\"ENV VAR : [REFRESH_TOKEN] = \"+postman.getEnvironmentVariable(\"REFRESH_TOKEN\")] = true;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "secret",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "web",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "mailtoharutyunyan@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{localhost}}/oauth/token",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Access Token ",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "secret",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "web",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{REFRESH_TOKEN}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{localhost}}/oauth/token",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
